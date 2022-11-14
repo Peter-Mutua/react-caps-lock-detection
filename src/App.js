@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
   padding : 170px 670px;
-  display : flex;
+  // display : flex;
   align-items : center
 `;
 
@@ -15,12 +15,13 @@ const Input = styled.input`
 `;
 
 const AlertCnt = styled.div`
-  padding : 170px 670px
+  //padding : 170px 270px;
+  height : 300px;
 `;
 
-const P = styled.h3`
+const P = styled.p`
   color : red;
-  font-size: 28px;
+  //font-size: 28px;
   font-weight : bold;
 `;
 
@@ -30,24 +31,26 @@ const App = () => {
 
   //fn to check if capslock is ON
   const checkCapsLock = (event) => {
-    if (event.getModifiedState('CapsLock')) {
-      setIsCapsLockOn(true)
+    if (event.getModifierState("CapsLock")) {
+      setIsCapsLockOn(true);
     } else {
-      setIsCapsLockOn(false)
+      setIsCapsLockOn(false);
     }
-  }
+  };
+
 
   return (
     <Wrapper>
+      <h3>CapsLock Detection</h3>
       <Input
-      placeholder = "Enter text here"
-      onKeyUp={checkCapsLock}
+        type="text"
+        onKeyUp={checkCapsLock}
+        placeholder = "Enter text here"
        />
 
        {/* Display Message if Caps Lock is on */}
       <AlertCnt>
-        {
-         isCapsLockOn | (
+        { isCapsLockOn && (
            <P>
               Warning: CapsLock On
            </P>
